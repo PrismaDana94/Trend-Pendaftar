@@ -15,9 +15,8 @@ st.set_page_config(
 # ======================
 df = pd.read_csv("data_pendaftar_clean.csv")
 
-st.write(df.columns)
-
 df["Tanggal Gabungan"] = pd.to_datetime(df["Tanggal Gabungan"])
+
 st.header("📈 Tren Pendaftar Bulanan")
 
 trend = (
@@ -28,6 +27,10 @@ trend = (
 
 fig, ax = plt.subplots(figsize=(10, 4))
 ax.plot(trend["period"], trend["Jumlah Pendaftar"], marker="o")
+
+# angka di tiap titik
+for x, y in zip(trend["period"], trend["Jumlah Pendaftar"]):
+    ax.text(x, y, str(y), ha="center", va="bottom", fontsize=8)
 
 ax.set_xlabel("Bulan")
 ax.set_ylabel("Jumlah Pendaftar")
