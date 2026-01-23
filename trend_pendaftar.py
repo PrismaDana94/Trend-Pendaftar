@@ -69,3 +69,22 @@ ax.set_ylabel("Jumlah Pendaftar")
 
 plt.xticks(rotation=45)
 st.pyplot(fig)
+
+# ======================
+# CHANNEL PENDAFTARAN
+# ======================
+st.header("📣 Channel Pendaftaran")
+
+channel = df["Channel"].value_counts().reset_index()
+channel.columns = ["Channel", "Jumlah Pendaftar"]
+
+fig, ax = plt.subplots(figsize=(8,4))
+ax.bar(channel["Channel"], channel["Jumlah Pendaftar"])
+
+ax.set_title("Distribusi Channel Pendaftaran")
+ax.set_xlabel("Channel")
+ax.set_ylabel("Jumlah Pendaftar")
+
+plt.xticks(rotation=45)
+st.pyplot(fig)
+
