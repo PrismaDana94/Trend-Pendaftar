@@ -195,41 +195,23 @@ plt.xticks(rotation=45)
 st.pyplot(fig)
 
 # ======================
-# STANDARISASI NAMA PROGRAM
+# TOP 10 MINAT PROGRAM
 # ======================
-df["Program_Clean"] = df["Product"].str.lower()
+st.header("🎓 Top 10 Minat Program")
 
-df["Program_Clean"] = df["Program_Clean"].replace({
-    r".*data science.*": "Data Science",
-    r".*machine learning.*": "AI / Machine Learning",
-    r".*ai.*": "AI / Machine Learning",
-    r".*web.*": "Web Development",
-    r".*data engineer.*": "Data Engineering",
-    r".*cyber.*": "Cyber Security",
-    r".*hr.*": "Human Resource",
-    r".*digital marketing.*": "Digital Marketing",
-    r".*business intelligence.*": "Business Intelligence",
-    r".*ui.*ux.*": "UI/UX"
-}, regex=True)
-
-df["Program_Clean"] = df["Program_Clean"].fillna("Lainnya")
-
-# ======================
-# MINAT PROGRAM
-# ======================
-st.header("🎓 Minat Program")
-
-program = (
-    df["Program_Clean"]
+top_program = (
+    df["Product"]
     .value_counts()
+    .head(10)
     .reset_index()
 )
 
-program.columns = ["Program", "Jumlah Pendaftar"]
+top_program.columns = ["Program", "Jumlah Pendaftar"]
 
 fig, ax = plt.subplots(figsize=(10,4))
-bars = ax.bar(program["Program"], program["Jumlah Pendaftar"])
+bars = ax.bar(top_program["Program"], top_program["Jumlah Pendaftar"])
 
+# angka di atas bar
 for bar in bars:
     height = bar.get_height()
     ax.text(
@@ -241,12 +223,11 @@ for bar in bars:
         fontsize=9
     )
 
-ax.set_title("Distribusi Minat Program")
+ax.set_title("Top 10 Minat Program")
 ax.set_xlabel("Program")
 ax.set_ylabel("Jumlah Pendaftar")
 
 plt.xticks(rotation=45)
 st.pyplot(fig)
-
 
 
