@@ -230,4 +230,48 @@ ax.set_ylabel("Jumlah Pendaftar")
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
+# ======================
+# INSIGHT UTAMA
+# ======================
+st.header("💡 Insight Utama")
+
+st.info("""
+📈 **Tren Pendaftaran Meningkat**  
+Jumlah pendaftar meningkat signifikan sejak pertengahan 2024 dan stabil pada periode berikutnya.
+
+📣 **Channel Paling Efektif**  
+Meta Ads dan Referral menjadi sumber pendaftar terbesar.
+
+👤 **Profil Pendaftar Dominan**  
+Mayoritas pendaftar berusia 22–27 tahun (early career & career switcher).
+
+🏠 **Ekspansi Wilayah**  
+Pendaftar Non-Jabodetabek tumbuh lebih tinggi dibanding Jabodetabek.
+
+🎓 **Minat Program**  
+Program Data Science dan bidang digital masih menjadi minat utama peserta.
+""")
+
+# ======================
+# REKOMENDASI
+# ======================
+st.header("🎯 Rekomendasi")
+
+st.success("""
+🎯 **Optimalkan Channel Utama**  
+Fokuskan anggaran pada Meta Ads dan Referral yang terbukti paling efektif.
+
+🤝 **Perkuat Referral Alumni**  
+Dorong akuisisi organik melalui program referral yang lebih terstruktur.
+
+📘 **Strategi Program Unggulan**  
+Pertahankan Data Science sebagai program utama dan kembangkan jalur lanjutan.
+
+🎯 **Segmentasi Target Marketing**  
+Fokuskan komunikasi pada usia 22–27 tahun dengan pesan upskilling & career switching.
+
+🌍 **Perluas Jangkauan Wilayah**  
+Tingkatkan kampanye digital berbasis lokasi untuk kota Non-Jabodetabek potensial.
+""")
+
 
