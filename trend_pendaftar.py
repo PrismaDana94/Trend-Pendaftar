@@ -100,3 +100,34 @@ ax.set_ylabel("Jumlah Pendaftar")
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
+# ======================
+# PROFIL PENDAFTAR - USIA
+# ======================
+st.header("👤 Profil Pendaftar - Usia")
+
+usia = df["Umur"].value_counts().sort_index().reset_index()
+usia.columns = ["Umur", "Jumlah Pendaftar"]
+
+fig, ax = plt.subplots(figsize=(10,4))
+bars = ax.bar(usia["Umur"], usia["Jumlah Pendaftar"])
+
+# angka di dalam bar
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,
+        height / 2,
+        int(height),
+        ha="center",
+        va="center",
+        fontsize=8,
+        color="white"
+    )
+
+ax.set_title("Distribusi Usia Pendaftar")
+ax.set_xlabel("Usia")
+ax.set_ylabel("Jumlah Pendaftar")
+
+st.pyplot(fig)
+
+
