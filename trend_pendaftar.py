@@ -158,5 +158,41 @@ ax.set_ylabel("Jumlah Pendaftar")
 
 st.pyplot(fig)
 
+# ======================
+# TOP 10 KOTA PENDAFTAR
+# ======================
+st.header("🏙️ Top 10 Kota Pendaftar")
+
+top_kota = (
+    df["Kota"]
+    .value_counts()
+    .head(10)
+    .reset_index()
+)
+
+top_kota.columns = ["Kota", "Jumlah Pendaftar"]
+
+fig, ax = plt.subplots(figsize=(8,4))
+bars = ax.bar(top_kota["Kota"], top_kota["Jumlah Pendaftar"])
+
+# angka di atas bar
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        int(height),
+        ha="center",
+        va="bottom",
+        fontsize=9
+    )
+
+ax.set_title("Top 10 Kota dengan Pendaftar Terbanyak")
+ax.set_xlabel("Kota")
+ax.set_ylabel("Jumlah Pendaftar")
+
+plt.xticks(rotation=45)
+st.pyplot(fig)
+
 
 
