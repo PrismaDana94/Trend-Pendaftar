@@ -195,41 +195,58 @@ plt.xticks(rotation=45)
 st.pyplot(fig)
 
 # ======================
+# STANDARISASI NAMA PROGRAM
+# ======================
+df["Program_Clean"] = df["Product"].str.lower()
+
+df["Program_Clean"] = df["Program_Clean"].replace({
+    r".*data science.*": "Data Science",
+    r".*machine learning.*": "AI / Machine Learning",
+    r".*ai.*": "AI / Machine Learning",
+    r".*web.*": "Web Development",
+    r".*data engineer.*": "Data Engineering",
+    r".*cyber.*": "Cyber Security",
+    r".*hr.*": "Human Resource",
+    r".*digital marketing.*": "Digital Marketing",
+    r".*business intelligence.*": "Business Intelligence",
+    r".*ui.*ux.*": "UI/UX"
+}, regex=True)
+
+df["Program_Clean"] = df["Program_Clean"].fillna("Lainnya")
+
+# ======================
 # MINAT PROGRAM
 # ======================
 st.header("🎓 Minat Program")
 
 program = (
-    df["Product"]
+    df["Program_Clean"]
     .value_counts()
     .reset_index()
 )
 
 program.columns = ["Program", "Jumlah Pendaftar"]
 
-fig, ax = plt.subplots(figsize=(10,6))
+fig, ax = plt.subplots(figsize=(10,4))
+bars = ax.bar(program["Program"], program["Jumlah Pendaftar"])
 
-bars = ax.barh(
-    program["Program"],
-    program["Jumlah Pendaftar"]
-)
-
-# angka di samping bar
 for bar in bars:
-    width = bar.get_width()
+    height = bar.get_height()
     ax.text(
-        width + 0.5,
-        bar.get_y() + bar.get_height() / 2,
-        int(width),
-        va="center",
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        int(height),
+        ha="center",
+        va="bottom",
         fontsize=9
     )
 
 ax.set_title("Distribusi Minat Program")
-ax.set_xlabel("Jumlah Pendaftar")
-ax.set_ylabel("Program")
+ax.set_xlabel("Program")
+ax.set_ylabel("Jumlah Pendaftar")
 
-plt.tight_layout()
+plt.xticks(rotation=45)
 st.pyplot(fig)
+
 
 
