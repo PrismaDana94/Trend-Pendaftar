@@ -129,6 +129,11 @@ ax.set_ylabel("Jumlah Pendaftar")
 
 st.pyplot(fig)
 
+# insight usia terbanyak
+usia_terbanyak = df["Umur"].mode()[0]
+
+st.caption(f"🔎 Usia terbanyak pendaftar adalah **{usia_terbanyak} tahun**.")
+
 # ======================
 # PROFIL PENDAFTAR - DOMISILI
 # ======================
