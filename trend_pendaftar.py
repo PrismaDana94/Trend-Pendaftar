@@ -79,7 +79,19 @@ channel = df["Channel"].value_counts().reset_index()
 channel.columns = ["Channel", "Jumlah Pendaftar"]
 
 fig, ax = plt.subplots(figsize=(8,4))
-ax.bar(channel["Channel"], channel["Jumlah Pendaftar"])
+bars = ax.bar(channel["Channel"], channel["Jumlah Pendaftar"])
+
+# angka di atas bar
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        int(height),
+        ha="center",
+        va="bottom",
+        fontsize=9
+    )
 
 ax.set_title("Distribusi Channel Pendaftaran")
 ax.set_xlabel("Channel")
