@@ -194,5 +194,39 @@ ax.set_ylabel("Jumlah Pendaftar")
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
+# ======================
+# MINAT PROGRAM
+# ======================
+st.header("🎓 Minat Program")
+
+program = (
+    df["Product"]
+    .value_counts()
+    .reset_index()
+)
+
+program.columns = ["Program", "Jumlah Pendaftar"]
+
+fig, ax = plt.subplots(figsize=(10,4))
+bars = ax.bar(program["Program"], program["Jumlah Pendaftar"])
+
+# angka di atas bar
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        int(height),
+        ha="center",
+        va="bottom",
+        fontsize=9
+    )
+
+ax.set_title("Distribusi Minat Program")
+ax.set_xlabel("Program")
+ax.set_ylabel("Jumlah Pendaftar")
+
+plt.xticks(rotation=45)
+st.pyplot(fig)
 
 
