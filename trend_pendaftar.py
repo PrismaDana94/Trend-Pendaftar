@@ -207,26 +207,29 @@ program = (
 
 program.columns = ["Program", "Jumlah Pendaftar"]
 
-fig, ax = plt.subplots(figsize=(10,4))
-bars = ax.bar(program["Program"], program["Jumlah Pendaftar"])
+fig, ax = plt.subplots(figsize=(10,6))
 
-# angka di atas bar
+bars = ax.barh(
+    program["Program"],
+    program["Jumlah Pendaftar"]
+)
+
+# angka di samping bar
 for bar in bars:
-    height = bar.get_height()
+    width = bar.get_width()
     ax.text(
-        bar.get_x() + bar.get_width() / 2,
-        height,
-        int(height),
-        ha="center",
-        va="bottom",
+        width + 0.5,
+        bar.get_y() + bar.get_height() / 2,
+        int(width),
+        va="center",
         fontsize=9
     )
 
 ax.set_title("Distribusi Minat Program")
-ax.set_xlabel("Program")
-ax.set_ylabel("Jumlah Pendaftar")
+ax.set_xlabel("Jumlah Pendaftar")
+ax.set_ylabel("Program")
 
-plt.xticks(rotation=45)
+plt.tight_layout()
 st.pyplot(fig)
 
 
