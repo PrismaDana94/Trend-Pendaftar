@@ -111,17 +111,16 @@ usia.columns = ["Umur", "Jumlah Pendaftar"]
 fig, ax = plt.subplots(figsize=(10,4))
 bars = ax.bar(usia["Umur"], usia["Jumlah Pendaftar"])
 
-# angka di dalam bar
+# angka di atas bar
 for bar in bars:
     height = bar.get_height()
     ax.text(
         bar.get_x() + bar.get_width() / 2,
-        height / 2,
+        height,
         int(height),
         ha="center",
-        va="center",
-        fontsize=8,
-        color="white"
+        va="bottom",
+        fontsize=8
     )
 
 ax.set_title("Distribusi Usia Pendaftar")
