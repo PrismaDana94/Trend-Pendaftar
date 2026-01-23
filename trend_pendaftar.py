@@ -129,4 +129,34 @@ ax.set_ylabel("Jumlah Pendaftar")
 
 st.pyplot(fig)
 
+# ======================
+# PROFIL PENDAFTAR - DOMISILI
+# ======================
+st.header("🏠 Domisili Pendaftar")
+
+domisili = df["Region"].value_counts().reset_index()
+domisili.columns = ["Region", "Jumlah Pendaftar"]
+
+fig, ax = plt.subplots(figsize=(6,4))
+bars = ax.bar(domisili["Region"], domisili["Jumlah Pendaftar"])
+
+# angka di atas bar
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        int(height),
+        ha="center",
+        va="bottom",
+        fontsize=9
+    )
+
+ax.set_title("Distribusi Domisili Pendaftar")
+ax.set_xlabel("Region")
+ax.set_ylabel("Jumlah Pendaftar")
+
+st.pyplot(fig)
+
+
 
