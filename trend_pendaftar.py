@@ -32,6 +32,20 @@ if periode == "Sebelum Juli 2024":
 elif periode == "Sesudah Juli 2024":
     df = df[df["Tanggal Gabungan"] >= "2024-07-01"]
 
+# ======================
+# FILTER DOMISILI
+# ======================
+st.sidebar.header("📍 Filter Domisili")
+
+pilih_region = st.sidebar.multiselect(
+    "Pilih Domisili",
+    options=df["Region"].dropna().unique(),
+    default=df["Region"].dropna().unique()
+)
+
+df = df[df["Region"].isin(pilih_region)]
+
+
 
 # ======================
 # JUDUL
