@@ -18,6 +18,22 @@ df = pd.read_csv("data_pendaftar_clean.csv")
 df["Tanggal Gabungan"] = pd.to_datetime(df["Tanggal Gabungan"])
 
 # ======================
+# FILTER PERIODE
+# ======================
+st.sidebar.header("🔎 Filter Periode")
+
+periode = st.sidebar.radio(
+    "Pilih Periode Pendaftaran",
+    ["Semua", "Sebelum Juli 2024", "Sesudah Juli 2024"]
+)
+
+if periode == "Sebelum Juli 2024":
+    df = df[df["Tanggal Gabungan"] < "2024-07-01"]
+elif periode == "Sesudah Juli 2024":
+    df = df[df["Tanggal Gabungan"] >= "2024-07-01"]
+
+
+# ======================
 # JUDUL
 # ======================
 st.title("📊 Dashboard Pendaftar Internship Program")
